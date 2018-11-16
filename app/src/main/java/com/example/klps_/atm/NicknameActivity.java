@@ -13,6 +13,7 @@ public class NicknameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_nickname);
     }
 
+
     public void next(View view){
         Intent age = new Intent(this,AgeActivity.class);
         startActivity(age);

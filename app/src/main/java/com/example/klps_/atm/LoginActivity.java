@@ -19,7 +19,7 @@ public class LoginActivity extends AppCompatActivity {
         edUserid.setText(userid);
     }
 
-    public void login(View view) {
+    public void login(View v){
         String userid = ((EditText)findViewById(R.id.ed_userid)).getText().toString();
         String passwd = ((EditText)findViewById(R.id.ed_passwd)).getText().toString();
         if ("jack".equals(userid) && "1234".equals(passwd)) {
@@ -29,6 +29,16 @@ public class LoginActivity extends AppCompatActivity {
                     .putString("USERID", userid)
                     .apply();
             finish();
+        }else {
+            new AlertDialog.Builder(this)
+                    .setTitle("Atm")
+                    .setMessage("登入失敗")
+                    .setPositiveButton("OK",null)
+                    .show();
         }
+
+    }
+    public void cancel(View v){
+
     }
 }
