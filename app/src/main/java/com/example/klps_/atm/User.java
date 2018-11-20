@@ -42,34 +42,34 @@ public class User {
     }
 
     public int getAge() {
-        setting.edit().
-                putInt("AGE",age).apply();
+        if (age == 0){
+            age = setting.getInt("AGE",0);
+        }
         return age;
     }
 
     public void setAge(int age) {
-        if (age == 0){
-            age = setting.getInt("AGE",0);
-        }
+        setting.edit()
+                .putInt("AGE",age).apply();
         this.age = age;
     }
 
     public int getGender() {
-        setting.edit()
-                .putInt("GENDER",gender).apply();
+        if (gender == 0){
+            gender = setting.getInt("GENDER",0);
+        }
         return gender;
     }
 
     public void setGender(int gender) {
-        if (gender == 0){
-            gender = setting.getInt("GENDER",0);
-        }
+        setting.edit()
+                .putInt("GENDER",gender).apply();
         this.gender = gender;
     }
 
     public boolean isValid(){
         valid = getNickname() != null && age != 0 && gender != 0;
-        return valid    ;
+        return valid;
     }
 
     public String getAddress() {
