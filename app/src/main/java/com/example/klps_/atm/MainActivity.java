@@ -3,8 +3,9 @@ package com.example.klps_.atm;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     boolean logon  = false;
     public static final int RC_LOGIN=1;
 
@@ -12,6 +13,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
         if ( !logon){ //如未登入則開啟loginActivity
             Intent intent = new Intent(this,LoginActivity.class);
             startActivityForResult(intent, RC_LOGIN);
@@ -25,8 +28,14 @@ public class MainActivity extends AppCompatActivity {
             if(resultCode != RESULT_OK){
                     finish();
             }else{
-                    Intent nickname = new Intent(this,NicknameActivity.class);
-                    startActivity(nickname);
+                logon = true;
+                TextView nickText = findViewById(R.id.nickname);
+                nickText.setText(user.getNickname()+"  welcome");
+                    if (user.isValid()){
+
+                        Intent nick = new Intent(this,NicknameActivity.class);
+                        startActivity(nick);
+                    }
             }
         }
     }
