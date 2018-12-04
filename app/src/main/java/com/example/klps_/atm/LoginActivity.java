@@ -23,11 +23,11 @@ public class LoginActivity extends AppCompatActivity {
         String userid = ((EditText)findViewById(R.id.ed_userid)).getText().toString();
         String passwd = ((EditText)findViewById(R.id.ed_passwd)).getText().toString();
         if ("jack".equals(userid) && "1234".equals(passwd)) {
-            setResult(RESULT_OK, getIntent());
             getSharedPreferences("atm", MODE_PRIVATE)
                     .edit()
                     .putString("USERID", userid)
                     .apply();
+            setResult(RESULT_OK);
             finish();
         }else {
             new AlertDialog.Builder(this)
