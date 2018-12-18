@@ -14,11 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class AgeActivity extends BaseActivity {
-    int [] numbers = {19,20,21,22};
+    int [] numbers = {19,20,21,22,23,24,25,26};
+    String [] rainbow = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_age);
+        rainbow = getResources().getStringArray(R.array.rainbow);
 
         RecyclerView recyclerView = findViewById(R.id.AgeCycler);
         recyclerView.setHasFixedSize(true);
@@ -53,10 +55,10 @@ public class AgeActivity extends BaseActivity {
         @Override
         public void onBindViewHolder(@NonNull AgeHolder holder, final int position) {
             holder.AgeText.setText(numbers[position]+"");
-
-            if(numbers[position] == 19){
+            holder.itemView.setBackgroundColor(Color.parseColor(rainbow[position%7]));
+            /*if(numbers[position] == 19){
                 holder.AgeText.setTextColor(Color.RED);
-            }
+            }*/
 
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
