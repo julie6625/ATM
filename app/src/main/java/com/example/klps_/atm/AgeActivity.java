@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -50,12 +51,21 @@ public class AgeActivity extends BaseActivity {
         }
 
         @Override
-        public void onBindViewHolder(@NonNull AgeHolder holder, int position) {
+        public void onBindViewHolder(@NonNull AgeHolder holder, final int position) {
             holder.AgeText.setText(numbers[position]+"");
 
             if(numbers[position] == 19){
                 holder.AgeText.setTextColor(Color.RED);
             }
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("AgeActivity", "onClick: "+numbers[position]/*會自動更改position屬性為 final int*/);
+                    TextView AgeText = findViewById(R.id.ed_age);
+                    AgeText.setText(numbers[position]+"");
+                }
+            });
         }
 
         @Override
